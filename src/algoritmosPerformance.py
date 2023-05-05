@@ -4,6 +4,40 @@ from time import time
 
 # _Algoritmos_____________________________________________________________________
 
+def shell_sort(alist):
+    def gap_insertion_sort(alist,start,gap):
+        for i in range(start+gap,len(alist),gap):
+
+            currentvalue = alist[i]
+            position = i
+
+            while position>=gap and alist[position-gap]>currentvalue:
+                alist[position]=alist[position-gap]
+                position = position-gap
+
+            alist[position]=currentvalue
+
+    sublistcount = len(alist)//2
+    while sublistcount > 0:
+        for startposition in range(sublistcount):
+             gap_insertion_sort(alist,startposition,sublistcount)
+        sublistcount = sublistcount // 2
+
+    return alist
+
+def bubble_sort(vetor):
+    n = len(vetor)
+    troca = True
+    while troca:
+        troca = False
+        for i in range(n - 1):
+            if vetor[i] > vetor[i + 1]:
+                vetor[i], vetor[i + 1] = vetor[i + 1], vetor[i]
+                troca = True
+        n -= 1
+
+    return vetor
+
 def merge_sort(lista):
     if len(lista) > 1:
         meio = len(lista) // 2
@@ -107,30 +141,40 @@ def quick_sort(array, first=0, last=None):
 
 # _Algoritmos de Tempo____________________________________________________________
 
-def quick_time(array):
-    time_s = time()
-    quick_sort(array)
-    return time() - time_s 
+# def bubble_time(array):
+#     time_s = time()
+#     bubble_sort(array)
+#     return time() - time_s 
 
-def merge_time(array):
-    time_s = time()
-    merge_sort(array)
-    return time() - time_s 
+# def shell_time(array):
+#     time_s = time()
+#     shell_sort(array)
+#     return time() - time_s 
 
-def selection_time(array):
-    time_s = time()
-    selection_sort(array)
-    return time() - time_s 
+# def quick_time(array):
+#     time_s = time()
+#     quick_sort(array)
+#     return time() - time_s 
 
-def insertion_time(array):
-    time_s = time()
-    insertion_sort(array)
-    return time() - time_s 
+# def merge_time(array):
+#     time_s = time()
+#     merge_sort(array)
+#     return time() - time_s 
 
-def index_time(array):
-    time_s = time()
-    index_sort(array)
-    return time() - time_s 
+# def selection_time(array):
+#     time_s = time()
+#     selection_sort(array)
+#     return time() - time_s 
+
+# def insertion_time(array):
+#     time_s = time()
+#     insertion_sort(array)
+#     return time() - time_s 
+
+# def index_time(array):
+#     time_s = time()
+#     index_sort(array)
+#     return time() - time_s 
 
 # ________________________________________________________________________________
 
@@ -265,4 +309,53 @@ def insertion_count(vetor):
     
     return comparisons, changes
 
+def bubble_count(vetor):
+    n = len(vetor)
+    troca = True
+    conta_trocas = 0 
+    conta_comparacoes = 0
+    while troca:
+        troca = False
+        for i in range(n - 1):
+            if vetor[i] > vetor[i + 1]:
+                vetor[i], vetor[i + 1] = vetor[i + 1], vetor[i]
+                troca = True
+                conta_trocas += 1
+            conta_comparacoes += 1
+        n -= 1
+
+    return conta_comparacoes, conta_trocas
+
+def shell_count(alist):
+    comparacoes = 0
+    swaps = 0
+
+    def gap_insertion_sort(alist,start,gap):
+        c = 0 
+        s = 0 
+        for i in range(start+gap,len(alist),gap):
+
+            currentvalue = alist[i]
+            position = i
+
+            while position>=gap and alist[position-gap]>currentvalue:
+                alist[position]=alist[position-gap]
+                position = position-gap
+                c += 1
+                s += 1
+
+            c += 1
+            alist[position]=currentvalue
+        return c, s
+
+    sublistcount = len(alist)//2
+    while sublistcount > 0:
+
+        for startposition in range(sublistcount):
+            ct, st = gap_insertion_sort(alist,startposition,sublistcount)
+            comparacoes += ct
+            swaps += st
+        sublistcount = sublistcount // 2
+
+    return comparacoes, swaps
 # ________________________________________________________________________________

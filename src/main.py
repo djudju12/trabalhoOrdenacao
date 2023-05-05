@@ -8,14 +8,14 @@ from algoritmosPerformance import *
 PARENT_FOLDER = r'vetores'
 
 # Funções de tempo
-ALGORITMOS_TIME: list[Callable] = [quick_time, merge_time, 
-                                   selection_time, insertion_time, 
-                                   index_time]
+ALGORITMOS: list[Callable] = [quick_sort, merge_sort,
+                              selection_sort, insertion_sort,
+                              index_sort, bubble_sort, shell_sort]
 
 # Funções de troca e comparação
-ALGORITMOS_COUNT: list[Callable] = [quick_count, merge_count, 
-                                    selection_count, insertion_count, 
-                                    index_count]
+ALGORITMOS_COUNT: list[Callable] = [quick_count, merge_count,
+                                    selection_count, insertion_count,
+                                    index_count, bubble_count, shell_count]
 
 # Path do arquivo que conterá os resultados
 PATH_RESULTADO = 'resultados.csv'
@@ -37,27 +37,34 @@ def main() -> None:
 
         # Itera sobre cada um dos algoritmos de tempo e comparação/troca
         # zip coloca o elemento n de cada uma das listas em uma tupla 
-        for algo_time, algo_count in zip(ALGORITMOS_TIME, ALGORITMOS_COUNT):
+        for algoritmo, algoritmo_count in zip(ALGORITMOS, ALGORITMOS_COUNT):
             # As chaves são os cenarios. Ex vetor1000-1, vetor1000-2, vetor1000-3
             for cenario in vetores.keys():
                 # retorna duas copias do vetor que sera testado
                 vetor_time, vetor_count = make_2_copies(vetores[cenario]) 
                 
                 # calcula comparação e trocas
-                comparacoes, trocas = algo_count(vetor_count)
+                comparacoes, trocas = algoritmo_count(vetor_count)
                 
                 # calcula tempo
-                tempo = algo_time(vetor_time)
-                
+                time_s = time()
+                vetor_ordenado = algoritmo(vetor_time)
+                tempo = time() - time_s
+
                 # escreve no arquivo o nome do algoritmo e os resultados 
                 # Usei só o nome do algoritmo de tempo pq nao era necessário 
                 # um nome separado para o de comparaçao/troca
-                writer.writerow([algo_time.__name__, cenario, 
+                writer.writerow([algoritmo.__name__, cenario, 
                                  str(trocas), str(comparacoes), 
                                  str(tempo)])
 
+                # Para verificar se os vetores estão ordenados
+                # Não é necessario no teste final
+                # if is_not_sorted(vetores[cenario], vetor_ordenado):
+                #     print('ERRO NO ALGORITMO =>', algoritmo.__name__ )
+                
                 # Quando termina um cenário printa o a hora, algoritmo e cenario
-                print(f'{hora_agora()}: ', algo_time.__name__, cenario)
+                print(f'{hora_agora()}: ', algoritmo.__name__, cenario)
 
     # fim
     print('End: ', hora_agora())
@@ -84,9 +91,13 @@ def criar_vetores() -> dict[str, list]:
             vetor = list(map(int, f.read().split('\n')))
 
             # Adciona o vetor no dicionario e a chave sera o nome do arquivo
-            # sem a extensão. O nome dos arquivos possuem o padrão vetor + tamanho + nº cenario
+            # sem a extensão. O nome dos arquivos possuem o padrão 
+            # vetor + tamanho + nº cenario
             vetores[file_name[:-4]] = vetor
     return vetores
+
+def is_not_sorted(vetor: list, vetor_ordenado: list):
+    return sorted(vetor.copy()) != vetor_ordenado
 
 
 if __name__ == '__main__':
