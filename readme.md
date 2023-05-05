@@ -12,7 +12,7 @@
 * ... adicionar os do julio ... 
 
 
-## Quick Start
+### Quick Start
 
 >**_NOTE:_** Você vai precisar dos vetores de testes na pasta ```vetores```, localizada no diretorio ```src```
 ```console
@@ -21,14 +21,15 @@ python3 main.py
 
 ## Se você quiser adicionar mais casos de teste:
 1. Adicione o alogoritmo em AlgoritmosPerformance.py
-2. Os algoritmos de Comparação / Trocas devem retornar os valores na respectiva ordem
-3. Estamos testando apenas a performance, nao retorne o vetor junto dos resultados
-4. Coloque sua função das listas ALGORITMOS_TIME e ALGORITMOS_COUNT
-5. Rode: 
+2. Os algoritmos de Comparação / Trocas devem retornar os valores nessa mesmas ordem
+4. Os algoritmos de Tempo devem retornar apenas o tempo
+5. Estamos testando apenas a performance, nao retorne o vetor junto dos resultados
+6. Coloque sua função nas listas ALGORITMOS_TIME e ALGORITMOS_COUNT
+7. Rode: 
 ```console
 python3 main.py
 ```
-6. Os resultados estarão em ```resultados.csv``` separados por pipes
+8. Os resultados estarão em ```resultados.csv``` separados por pipes
 
 ## Colabs
 
