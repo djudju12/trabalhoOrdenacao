@@ -7,7 +7,7 @@ from time import perf_counter
 
 # _VARAVEIS GLOBAIS______________________________________________________________
 
-PARENT_FOLDER = r'vetores'
+PARENT_FOLDER = r'vetores2'
 
 # Funções de tempo
 ALGORITMOS: list[Callable] = [quick_sort, merge_sort,
@@ -38,14 +38,18 @@ def main() -> None:
         writer = csv.writer(f, delimiter='|')
         writer.writerow(HEADER)
 
+
+        n = 0
+        a = (len(vetores) * len(ALGORITMOS)) // 2
         # Itera sobre cada um dos algoritmos de tempo e comparação/troca
         # zip coloca o elemento n de cada uma das listas em uma tupla 
         for algoritmo, algoritmo_count in zip(ALGORITMOS, ALGORITMOS_COUNT):
             # As chaves são os cenarios. Ex vetor1000-1, vetor1000-2...
             for cenario in vetores.keys():
-
+                n += 1
+                bar(n, a, hora_agora(), algoritmo.__name__, cenario)
                 # Quando começa um cenário printa o a hora, algoritmo e cenario
-                print(f'{hora_agora()}:', algoritmo.__name__, cenario)
+                # print(f'{hora_agora()}:', algoritmo.__name__, cenario)
                 
                 # retorna duas copias do vetor que sera testado
                 vetor_time, vetor_count = make_2_copies(vetores[cenario]) 
@@ -99,6 +103,12 @@ def criar_vetores() -> dict[str, list]:
 
 def is_not_sorted(vetor: list, vetor_ordenado: list) -> bool:
     return sorted(vetor.copy()) != vetor_ordenado
+
+def bar(posicao, tamanho, hora, atual, cenario):
+    string = f'[{"o"*posicao+"~"*(tamanho-posicao)}]'
+    string += f' | atual: {atual} {cenario} | inicio: {hora}'
+    os.system('cls')
+    print(string)
 
 
 if __name__ == '__main__':
