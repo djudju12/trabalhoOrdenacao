@@ -29,7 +29,7 @@ python3 main.py
 ```console
 python3 main.py
 ```
-8. Os resultados estarão em ```resultados.csv``` separados por pipes
+7. Os resultados estarão em ```resultados.csv``` separados por pipes
 
 ## Colabs
 
