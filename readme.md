@@ -19,7 +19,7 @@
 python3 main.py
 ```
 
-## Se você quiser adicionar mais casos de teste basta seguir os seguintes passos:
+## Se você quiser adicionar mais casos de teste:
 1. Adicione o alogoritmo em AlgoritmosPerformance.py
 2. Os algoritmos de Comparação / Trocas devem retornar os valores na respectiva ordem
 3. Estamos testando apenas a performance, nao retorne o vetor junto dos resultados
@@ -30,9 +30,9 @@ python3 main.py
 ```
 6. Os resultados estarão em ```resultados.csv``` separados por pipes
 
-# Colabs
+## Colabs
 
-### Alguns testes também foram realizados no Google Colab:
+Alguns testes também foram realizados no Google Colab:
 
 * [Index Sort](https://colab.research.google.com/drive/1VUn3YS-M1d20R_58d55nuk3bdtwl33X2?usp=sharing)
 * [Insert Sort](https://colab.research.google.com/drive/1fBK5NilvfT5q5c7e43x2WH84OAONHXYk?usp=sharing)
