@@ -2,7 +2,7 @@
 from bisect import bisect_left
 from time import time
 
-# _Algoritmos_____________________________________________________________________
+# _Algoritmos___________________________________________________________________
 
 def shell_sort(alist):
     def gap_insertion_sort(alist,start,gap):
@@ -137,48 +137,9 @@ def quick_sort(array, first=0, last=None):
 
     return array 
 
-# ________________________________________________________________________________
+# ______________________________________________________________________________
 
-# _Algoritmos de Tempo____________________________________________________________
-
-# def bubble_time(array):
-#     time_s = time()
-#     bubble_sort(array)
-#     return time() - time_s 
-
-# def shell_time(array):
-#     time_s = time()
-#     shell_sort(array)
-#     return time() - time_s 
-
-# def quick_time(array):
-#     time_s = time()
-#     quick_sort(array)
-#     return time() - time_s 
-
-# def merge_time(array):
-#     time_s = time()
-#     merge_sort(array)
-#     return time() - time_s 
-
-# def selection_time(array):
-#     time_s = time()
-#     selection_sort(array)
-#     return time() - time_s 
-
-# def insertion_time(array):
-#     time_s = time()
-#     insertion_sort(array)
-#     return time() - time_s 
-
-# def index_time(array):
-#     time_s = time()
-#     index_sort(array)
-#     return time() - time_s 
-
-# ________________________________________________________________________________
-
-# _Algoritmos de Comparação/Trocas_______________________________________________
+# _Algoritmos de Comparação/Trocas______________________________________________
 def merge_count(vetor):
     _, comparacoes, trocas = merge_count_impl(vetor)
     return comparacoes, trocas
@@ -358,4 +319,4 @@ def shell_count(alist):
         sublistcount = sublistcount // 2
 
     return comparacoes, swaps
-# ________________________________________________________________________________
+# ______________________________________________________________________________

@@ -4,7 +4,7 @@ import datetime
 import os
 from algoritmosPerformance import *
 
-# _DEFINIÇÃO DAS VARIAVEIS_______________________________________________________
+# _DEFINIÇÃO DAS VARIAVEIS______________________________________________________
 PARENT_FOLDER = r'vetores'
 
 # Funções de tempo
@@ -38,7 +38,7 @@ def main() -> None:
         # Itera sobre cada um dos algoritmos de tempo e comparação/troca
         # zip coloca o elemento n de cada uma das listas em uma tupla 
         for algoritmo, algoritmo_count in zip(ALGORITMOS, ALGORITMOS_COUNT):
-            # As chaves são os cenarios. Ex vetor1000-1, vetor1000-2, vetor1000-3
+            # As chaves são os cenarios. Ex vetor1000-1, vetor1000-2...
             for cenario in vetores.keys():
                 # retorna duas copias do vetor que sera testado
                 vetor_time, vetor_count = make_2_copies(vetores[cenario]) 
