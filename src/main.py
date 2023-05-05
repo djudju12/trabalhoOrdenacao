@@ -5,7 +5,7 @@ import os
 from algoritmosPerformance import *
 
 # _DEFINIÇÃO DAS VARIAVEIS_______________________________________________________
-PARENT_FOLDER = r'vetores2'
+PARENT_FOLDER = r'vetores'
 
 # Funções de tempo
 ALGORITMOS_TIME: list[Callable] = [quick_time, merge_time, 
