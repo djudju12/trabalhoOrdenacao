@@ -4,7 +4,8 @@ import datetime
 import os
 from algoritmosPerformance import *
 
-# _DEFINIÇÃO DAS VARIAVEIS______________________________________________________
+# _VARAVEIS GLOBAIS______________________________________________________________
+
 PARENT_FOLDER = r'vetores'
 
 # Funções de tempo
@@ -22,6 +23,7 @@ PATH_RESULTADO = 'resultados.csv'
 
 # Cabeçalho do arquivo com os resultados
 HEADER = ['Algoritmo', 'Cenario', 'Trocas', 'Comparacoes', 'Tempo']
+# _______________________________________________________________________________
 
 def main() -> None:
     # Criar todos os vetores (pequeno, medio, grande, supergrande)
@@ -52,8 +54,6 @@ def main() -> None:
                 tempo = time() - time_s
 
                 # escreve no arquivo o nome do algoritmo e os resultados 
-                # Usei só o nome do algoritmo de tempo pq nao era necessário 
-                # um nome separado para o de comparaçao/troca
                 writer.writerow([algoritmo.__name__, cenario, 
                                  str(trocas), str(comparacoes), 
                                  str(tempo)])
@@ -96,7 +96,7 @@ def criar_vetores() -> dict[str, list]:
             vetores[file_name[:-4]] = vetor
     return vetores
 
-def is_not_sorted(vetor: list, vetor_ordenado: list):
+def is_not_sorted(vetor: list, vetor_ordenado: list) -> bool:
     return sorted(vetor.copy()) != vetor_ordenado
 
 
