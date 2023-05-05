@@ -1,6 +1,5 @@
 # Utilizar estas funcões para calcular quantidade de comparações e mudanças
 from bisect import bisect_left
-from time import time
 
 # _Algoritmos___________________________________________________________________
 

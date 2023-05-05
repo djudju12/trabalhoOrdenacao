@@ -3,6 +3,7 @@ import csv
 import datetime
 import os
 from algoritmosPerformance import *
+from time import perf_counter
 
 # _VARAVEIS GLOBAIS______________________________________________________________
 
@@ -42,6 +43,10 @@ def main() -> None:
         for algoritmo, algoritmo_count in zip(ALGORITMOS, ALGORITMOS_COUNT):
             # As chaves são os cenarios. Ex vetor1000-1, vetor1000-2...
             for cenario in vetores.keys():
+
+                # Quando começa um cenário printa o a hora, algoritmo e cenario
+                print(f'{hora_agora()}:', algoritmo.__name__, cenario)
+                
                 # retorna duas copias do vetor que sera testado
                 vetor_time, vetor_count = make_2_copies(vetores[cenario]) 
                 
@@ -49,23 +54,19 @@ def main() -> None:
                 comparacoes, trocas = algoritmo_count(vetor_count)
                 
                 # calcula tempo
-                time_s = time()
+                time_s = perf_counter()
                 vetor_ordenado = algoritmo(vetor_time)
-                tempo = time() - time_s
-
-                # escreve no arquivo o nome do algoritmo e os resultados 
-                writer.writerow([algoritmo.__name__, cenario, 
-                                 str(trocas), str(comparacoes), 
-                                 str(tempo)])
+                tempo = perf_counter() - time_s
 
                 # Para verificar se os vetores estão ordenados
                 # Não é necessario no teste final
                 # if is_not_sorted(vetores[cenario], vetor_ordenado):
                 #     print('ERRO NO ALGORITMO =>', algoritmo.__name__ )
-                
-                # Quando termina um cenário printa o a hora, algoritmo e cenario
-                print(f'{hora_agora()}: ', algoritmo.__name__, cenario)
 
+                # escreve no arquivo o nome do algoritmo e os resultados 
+                writer.writerow([algoritmo.__name__, cenario, 
+                                 str(trocas), str(comparacoes), 
+                                 str(tempo)])
     # fim
     print('End: ', hora_agora())
 
