@@ -7,7 +7,7 @@ from time import perf_counter
 
 # _VARAVEIS GLOBAIS______________________________________________________________
 
-PARENT_FOLDER = r'vetores2'
+PARENT_FOLDER = r'vetores'
 
 # Funções de tempo
 ALGORITMOS: list[Callable] = [quick_sort, merge_sort,
@@ -37,7 +37,6 @@ def main() -> None:
         # csv.writer() é o objeto que escreverá no arquvio de resultado
         writer = csv.writer(f, delimiter='|')
         writer.writerow(HEADER)
-
 
         n = 0
         a = (len(vetores) * len(ALGORITMOS)) // 2
