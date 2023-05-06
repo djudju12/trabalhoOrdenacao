@@ -7,7 +7,7 @@ from time import perf_counter
 
 # _VARAVEIS GLOBAIS______________________________________________________________
 
-PARENT_FOLDER = r'vetores'
+PARENT_FOLDER = r'vetores2'
 
 # Funções de tempo
 ALGORITMOS: list[Callable] = [quick_sort, merge_sort,
@@ -40,13 +40,17 @@ def main() -> None:
 
         n = 0
         a = (len(vetores) * len(ALGORITMOS)) // 2
+
         # Itera sobre cada um dos algoritmos de tempo e comparação/troca
         # zip coloca o elemento n de cada uma das listas em uma tupla 
+        concluidos = []
         for algoritmo, algoritmo_count in zip(ALGORITMOS, ALGORITMOS_COUNT):
             # As chaves são os cenarios. Ex vetor1000-1, vetor1000-2...
             for cenario in vetores.keys():
                 n += 1
-                bar(n, a, hora_agora(), algoritmo.__name__, cenario)
+                # bar(n, a, hora_agora(), algoritmo.__name__, cenario, ALGORITMOS,concluidos)
+                bar(n, a, ALGORITMOS, concluidos)
+                
                 # Quando começa um cenário printa o a hora, algoritmo e cenario
                 # print(f'{hora_agora()}:', algoritmo.__name__, cenario)
                 
@@ -70,6 +74,9 @@ def main() -> None:
                 writer.writerow([algoritmo.__name__, cenario, 
                                  str(trocas), str(comparacoes), 
                                  str(tempo)])
+
+            concluidos.append(algoritmo.__name__)
+
     # fim
     print('End: ', hora_agora())
 
@@ -103,12 +110,19 @@ def criar_vetores() -> dict[str, list]:
 def is_not_sorted(vetor: list, vetor_ordenado: list) -> bool:
     return sorted(vetor.copy()) != vetor_ordenado
 
-def bar(posicao, tamanho, hora, atual, cenario):
-    string = f'[{"o"*posicao+"~"*(tamanho-posicao)}]'
-    string += f' | atual: {atual} {cenario} | inicio: {hora}'
-    os.system('cls')
+# def bar(posicao, tamanho, hora, atual, cenario, lista_algoritmos: list, concluidos: list):
+def bar(posicao, tamanho, lista_algoritmos: list, concluidos: list):
+    # string = f'[{"*"*posicao+"~"*(tamanho-posicao)}]'
+    string = f'[{"~"*posicao+">"+" "*(tamanho-posicao)}]'
+    # os.system('cls')
+    print('\033c')
     print(string)
+    print_list(lista_algoritmos, concluidos)
 
+
+def print_list(lista_algoritmos: list, concluidos: list):
+    for item in lista_algoritmos:
+        print(f'[{"x" if item.__name__ in concluidos else " "}] {item.__name__}')
 
 if __name__ == '__main__':
     main()
