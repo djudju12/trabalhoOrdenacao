@@ -7,7 +7,7 @@ from time import perf_counter
 
 # _VARAVEIS GLOBAIS______________________________________________________________
 
-PARENT_FOLDER = r'vetores2'
+PARENT_FOLDER = r'vetores'
 
 # Funções de tempo
 ALGORITMOS: list[Callable] = [quick_sort, merge_sort,
@@ -39,7 +39,7 @@ def main() -> None:
         writer.writerow(HEADER)
 
         n = 0
-        a = (len(vetores) * len(ALGORITMOS)) // 2
+        a = (len(vetores) * len(ALGORITMOS)) 
 
         # Itera sobre cada um dos algoritmos de tempo e comparação/troca
         # zip coloca o elemento n de cada uma das listas em uma tupla 
@@ -78,6 +78,7 @@ def main() -> None:
             concluidos.append(algoritmo.__name__)
 
     # fim
+    bar(a, a, ALGORITMOS, concluidos)
     print('End: ', hora_agora())
 
 def make_2_copies(vetor: list) -> tuple[list, list]:
@@ -113,16 +114,20 @@ def is_not_sorted(vetor: list, vetor_ordenado: list) -> bool:
 # def bar(posicao, tamanho, hora, atual, cenario, lista_algoritmos: list, concluidos: list):
 def bar(posicao, tamanho, lista_algoritmos: list, concluidos: list):
     # string = f'[{"*"*posicao+"~"*(tamanho-posicao)}]'
-    string = f'[{"~"*posicao+">"+" "*(tamanho-posicao)}]'
+    # string = f'[{"~"*posicao+">"+" "*(tamanho-posicao)}]'
     # os.system('cls')
     print('\033c')
+    t = 25
+    a = t/100
+    string = f'[{"~"*int(posicao*100/tamanho * a)+">"}]'
     print(string)
     print_list(lista_algoritmos, concluidos)
 
-
+# 25/100
+# 4 % de 84 
 def print_list(lista_algoritmos: list, concluidos: list):
     for item in lista_algoritmos:
-        print(f'[{"x" if item.__name__ in concluidos else " "}] {item.__name__}')
+        print(f'[{"X" if item.__name__ in concluidos else " "}] {item.__name__}')
 
 if __name__ == '__main__':
     main()
