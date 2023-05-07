@@ -38,21 +38,20 @@ def main() -> None:
         writer = csv.writer(f, delimiter='|')
         writer.writerow(HEADER)
 
-        n = 0
-        a = (len(vetores) * len(ALGORITMOS)) 
+        # Variaveis usadas para imprimir o carregamento
+        concluidos = []
+        item_atual = 0 
+        item_total = (len(vetores) * len(ALGORITMOS)) 
+        comeco = hora_agora()
 
         # Itera sobre cada um dos algoritmos de tempo e comparação/troca
-        # zip coloca o elemento n de cada uma das listas em uma tupla 
-        concluidos = []
         for algoritmo, algoritmo_count in zip(ALGORITMOS, ALGORITMOS_COUNT):
+
             # As chaves são os cenarios. Ex vetor1000-1, vetor1000-2...
             for cenario in vetores.keys():
-                n += 1
-                # bar(n, a, hora_agora(), algoritmo.__name__, cenario, ALGORITMOS,concluidos)
-                bar(n, a, ALGORITMOS, concluidos)
-                
-                # Quando começa um cenário printa o a hora, algoritmo e cenario
-                # print(f'{hora_agora()}:', algoritmo.__name__, cenario)
+
+                item_atual += 1
+                print_stats(item_atual, item_total, concluidos)
                 
                 # retorna duas copias do vetor que sera testado
                 vetor_time, vetor_count = make_2_copies(vetores[cenario]) 
@@ -78,8 +77,40 @@ def main() -> None:
             concluidos.append(algoritmo.__name__)
 
     # fim
-    bar(a, a, ALGORITMOS, concluidos)
-    print('End: ', hora_agora())
+    print_stats(item_atual, item_total, concluidos)
+    print('Start: ', comeco)
+    print('End:   ', hora_agora())
+
+def print_stats(n, a, concluidos):
+    limpa_tela = '\033c'
+    print(limpa_tela)
+    
+    # Printa a barra de carregamento
+    bar(n, a)
+    
+    # Pritna a lista de algoritmos
+    print_list(ALGORITMOS, concluidos)
+
+def bar(n, t_amostra):
+    tamanho = 25
+    string = '['
+    
+    # n é a quantidade de caracteres que serão impressos
+    # round((n / t_amostra) * 100) é quantos % da amostra estão completos
+    # multiplica por (tamanho / 100) pois a barra não tem o seu tamanho == 100
+    n = int(round((n / t_amostra) * 100) * (tamanho / 100))
+
+    # Printa todos os caracteres e a cabeca da barra de loading
+    string += f'{"~" * (n-1)}' + '>'
+   
+    # Fecha a barra
+    string += f'{" " * (tamanho - n)}' + ']'
+    print(string)
+
+def print_list(lista_algoritmos: list, concluidos: list):
+    # se esta concluido printa X senao ' '
+    for item in lista_algoritmos:
+        print(f'[{"X" if item.__name__ in concluidos else " "}] {item.__name__}')
 
 def make_2_copies(vetor: list) -> tuple[list, list]:
     return vetor.copy(), vetor.copy() 
@@ -87,7 +118,6 @@ def make_2_copies(vetor: list) -> tuple[list, list]:
 # Retorna a hora atual em hora:minuto:segundo
 def hora_agora() -> str:
     return datetime.datetime.now().strftime('%H:%M:%S')
-
 
 def criar_vetores() -> dict[str, list]:
     vetores = {}
@@ -110,24 +140,6 @@ def criar_vetores() -> dict[str, list]:
 
 def is_not_sorted(vetor: list, vetor_ordenado: list) -> bool:
     return sorted(vetor.copy()) != vetor_ordenado
-
-# def bar(posicao, tamanho, hora, atual, cenario, lista_algoritmos: list, concluidos: list):
-def bar(posicao, tamanho, lista_algoritmos: list, concluidos: list):
-    # string = f'[{"*"*posicao+"~"*(tamanho-posicao)}]'
-    # string = f'[{"~"*posicao+">"+" "*(tamanho-posicao)}]'
-    # os.system('cls')
-    print('\033c')
-    t = 25
-    a = t/100
-    string = f'[{"~"*int(posicao*100/tamanho * a)+">"}]'
-    print(string)
-    print_list(lista_algoritmos, concluidos)
-
-# 25/100
-# 4 % de 84 
-def print_list(lista_algoritmos: list, concluidos: list):
-    for item in lista_algoritmos:
-        print(f'[{"X" if item.__name__ in concluidos else " "}] {item.__name__}')
 
 if __name__ == '__main__':
     main()
