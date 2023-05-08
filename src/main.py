@@ -7,7 +7,7 @@ from time import perf_counter
 
 # _VARAVEIS GLOBAIS______________________________________________________________
 
-PARENT_FOLDER = 'vetores2'
+PARENT_FOLDER = 'vetores3'
 
 # Funções de tempo
 ALGORITMOS: list[Callable] = [quick_sort, merge_sort,
