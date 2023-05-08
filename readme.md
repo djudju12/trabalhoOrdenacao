@@ -34,8 +34,4 @@ python3 main.py
 
 Alguns testes também foram realizados no Google Colab:
 
-* [Index Sort](https://colab.research.google.com/drive/1VUn3YS-M1d20R_58d55nuk3bdtwl33X2?usp=sharing)
-* [Insert Sort](https://colab.research.google.com/drive/1fBK5NilvfT5q5c7e43x2WH84OAONHXYk?usp=sharing)
-* [Merge Sort](https://colab.research.google.com/drive/1LrOnR8In8s38q9TW0i1AXdb-YqhLi5ZE?usp=sharing)
-* [Bubble Sort](https://colab.research.google.com/drive/18Uw6nTBMOtiL44xg5cX2r7ePAnWrymiZ)
-* [Shell Sort](https://colab.research.google.com/drive/18Uw6nTBMOtiL44xg5cX2r7ePAnWrymiZ)
+* [Colab](https://drive.google.com/drive/folders/1mH3nv04MJ6OpUfxuFry5s12p0nNN-UKY)
