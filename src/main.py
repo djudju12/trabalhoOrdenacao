@@ -70,7 +70,7 @@ def main() -> None:
                 #     print('ERRO NO ALGORITMO =>', algoritmo.__name__ )
 
                 # escreve no arquivo o nome do algoritmo e os resultados 
-                writer.writerow([algoritmo.__name__, cenario, 
+                writer.writerow([algoritmo.__name__, cenario,
                                  str(trocas), str(comparacoes), 
                                  str(tempo)])
 
@@ -82,8 +82,12 @@ def main() -> None:
     print('End:   ', hora_agora())
 
 def print_stats(n, a, concluidos) -> None:
-    limpa_tela = '\033c'
-    print(limpa_tela)
+    
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        limpa_tela = '\033c'
+        print(limpa_tela)
     
     # Printa a barra de carregamento
     bar(n, a)
