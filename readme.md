@@ -2,6 +2,7 @@
 
 ### Integrantes: Jonathan Santos, Arthur, Julio e Gustavo Cunha 
 ### Resultados: [Planilha Resultados](https://docs.google.com/spreadsheets/d/10MwA3CcttgDYVtX8B0n6mRMt6XoYsUYe/edit#gid=869839357)
+### Video: [Apresentação](https://drive.google.com/file/d/1TVYVulOaPyYKoWU-1RwbR_ug1NYBkEDV/view)
 
 ### Algoritmos testados:
 * Quick Sort
