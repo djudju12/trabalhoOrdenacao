@@ -4,13 +4,13 @@
 ### Resultados: [Planilha Resultados](https://docs.google.com/spreadsheets/d/10MwA3CcttgDYVtX8B0n6mRMt6XoYsUYe/edit#gid=869839357)
 
 ### Algoritmos testados:
-* quick sort
-* merge sort
-* selection sort
-* insertion sort
-* index sort
-* ... adicionar os do julio ... 
-
+* Quick Sort
+* Merge Sort
+* Selection Sort
+* Insertion Sort
+* Index Sort
+* Shell Sort
+* Bubble Sort
 
 ### Quick Start
 

@@ -81,7 +81,7 @@ def main() -> None:
     print('Start: ', comeco)
     print('End:   ', hora_agora())
 
-def print_stats(n, a, concluidos):
+def print_stats(n, a, concluidos) -> None:
     limpa_tela = '\033c'
     print(limpa_tela)
     
@@ -91,7 +91,7 @@ def print_stats(n, a, concluidos):
     # Pritna a lista de algoritmos
     print_list(ALGORITMOS, concluidos)
 
-def bar(n, t_amostra):
+def bar(n, t_amostra) -> None:
     tamanho = 25
     string = '['
     
@@ -107,7 +107,7 @@ def bar(n, t_amostra):
     string += f'{" " * (tamanho - n)}' + ']'
     print(string)
 
-def print_list(lista_algoritmos: list, concluidos: list):
+def print_list(lista_algoritmos: list, concluidos: list) -> None:
     # se esta concluido printa X senao ' '
     for item in lista_algoritmos:
         print(f'[{"X" if item.__name__ in concluidos else " "}] {item.__name__}')
